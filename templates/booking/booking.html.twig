@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="margin-left:30rem;margin-top: 5rem ">Bookings</h1>
+        <table class="table" style="margin-top: 5rem">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Model van Vliegtuig</th>
+                <th scope="col">Vertrek Vliegveld</th>
+                <th scope="col">Aankomst Vliegveld</th>
+                <th scope="col">Stoel Nummer</th>
+                <th scope="col">Datum van Boeking</th>
+                <th scope="col">Datum van Vlucht</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for booking in klant.bookings %}
+                <tr>
+                    <td>{{ booking.vliegtuigID.model }}</td>
+                    <td>{{ booking.vertrekVliegveldId.naam }}</td>
+                    <td>{{ booking.eindVliegveldId.naam }}</td>
+                    <td>{{ booking.stoel }}</td>
+                    <td>{{ booking.DatumBooking|date("d/m/Y") }}</td>
+                    <td>{{ booking.DatumVlucht|date("d/m/y") }}</td>
+
+                    {% if booking.eindVliegveldId.status=="Actief" %}
+                    <td>Actief</td>
+                    {% else %}
+                    <td>Canceled</td>
+                    {% endif %}
+                    <td>
+                        <a href="{{ path("bookingDelete",{'id':booking.id}) }}">-</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td> <a href="{{ path("booking_create") }}">Add new booking</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

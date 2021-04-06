@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="margin-left:26rem;margin-top: 5rem ">Groepen</h1>
+        <table class="table" style="margin-top: 5rem">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Groep Naam</th>
+                <th scope="col">Srichter Naam</th>
+                <th scope="col">Leden</th>
+                <th scope="col">Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for groups in groep %}
+                <tr>
+                    <td>{{ groups.naam }}</td>
+                    <td>{{ groups.stichter.voornaam }}</td>
+                    <td>
+                        {% for members in groups.groupCustomers %}
+                            {{members.customer.email }},
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a class="nav-link" href="{{ path("test",{'id':groups.id}) }}">Boeken</a>|
+                        <a class="nav-link" href="{{ path("groopLeden",{'id':groups.id}) }}">Leden</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>
+                    <a class="nav-link" href="/create/group">Groep Maken</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

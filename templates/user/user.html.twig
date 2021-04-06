@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container card text-center">
+        <div class="card-body">
+            <h1 class="text-center">{{ klant.voornaam }} {{ klant.achternaam }}</h1>
+            <hr>
+            <strong>Email</strong>
+            <p>{{ klant.email }}</p>
+            <strong>Address</strong>
+            <p>{{ klant.adres }}, {{ klant.stad }}</p>
+            <strong>Postcode</strong>
+            <p>{{ klant.postcode }}</p>
+
+        </div>
+        <a href="{{ path('edit_account',{'id': klant.id}) }}" class="btn btn-info">Edit</a>
+    </div>
+
+{% endblock %}

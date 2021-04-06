@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="margin-left:26rem;margin-top: 5rem ">Groepen</h1>
+        <table class="table" style="margin-top: 5rem">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Groep Naam</th>
+                <th scope="col">Srichter Naam</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for vlieg in vliegveld %}
+                <tr>
+                    <td>{{ vlieg.naam }}</td>
+                    <td>{{ vlieg.land.naam }}</td>
+                    <td>{{ vlieg.status }}</td>
+                    <td>
+                        <a class="nav-link" href="{{ path("vliegtuigveldEdit",{'id':vlieg.id}) }}">Change Status</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
